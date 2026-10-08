@@ -3,6 +3,13 @@ name = "wslshim"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.88"
+description = "Tiny Windows exe that runs the WSL command it's named after, translating Windows drive paths in the arguments"
+license = "MIT"
+repository = "https://github.com/Andrew-McCall/wslshim"
+readme = "README.md"
+keywords = ["wsl", "windows", "shim", "path", "cli"]
+categories = ["command-line-utilities", "os::windows-apis"]
+exclude = ["deploy.sh", ".cargo"]
 
 [dependencies]
 

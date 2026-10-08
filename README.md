@@ -4,7 +4,7 @@ A tiny, dependency-free Windows executable that runs the WSL command it's named.
 
 ## Usage
 
-Copy the built exe to `<tool>.exe` for each WSL tool you want available on the Windows `PATH`:
+Prebuilt exes for x86_64, i686 and aarch64 Windows are on the [releases page](https://github.com/Andrew-McCall/wslshim/releases). Copy the one for your machine to `<tool>.exe` for each WSL tool you want available on the Windows `PATH`:
 
 ```
 copy wslshim.exe C:\Users\you\bin\grep.exe
@@ -62,3 +62,7 @@ Tests run on any host:
 ```
 cargo test
 ```
+
+## License
+
+MIT
