@@ -11,10 +11,7 @@ use std::process::{Command, exit};
 fn is_drive_path(s: &str) -> bool {
     let b = s.as_bytes();
 
-    b.len() >= 3
-        && b[0].is_ascii_alphabetic()
-        && b[1] == b':'
-        && matches!(b[2], b'\\' | b'/')
+    b.len() >= 3 && b[0].is_ascii_alphabetic() && b[1] == b':' && matches!(b[2], b'\\' | b'/')
 }
 
 fn drive_path_into(out: &mut String, s: &str) {
@@ -41,16 +38,15 @@ fn translate(arg: OsString) -> OsString {
     }
 
     // --foo=C:\bar -> --foo=/mnt/c/bar
-    if s.starts_with('-') {
-        if let Some((opt, val)) = s.split_once('=')
-            && is_drive_path(val)
-        {
-            let mut out = String::with_capacity(s.len() + 4);
-            out.push_str(opt);
-            out.push('=');
-            drive_path_into(&mut out, val);
-            return out.into();
-        }
+    if s.starts_with('-')
+        && let Some((opt, val)) = s.split_once('=')
+        && is_drive_path(val)
+    {
+        let mut out = String::with_capacity(s.len() + 4);
+        out.push_str(opt);
+        out.push('=');
+        drive_path_into(&mut out, val);
+        return out.into();
     }
 
     arg
